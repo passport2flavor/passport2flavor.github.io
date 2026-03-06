@@ -1,5 +1,232 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<title>Redirecting to website</title>
-<meta http-equiv="refresh" content="0; URL=https://p2f.my.canva.site/">
-<link rel="canonical" href="https://p2f.my.canva.site/">
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>passport2flavor - Waitlist</title>
+    <!-- Include Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #FFF5F0 0%, #FFE8DB 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            background-color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(217, 120, 68, 0.15);
+            text-align: center;
+            margin: 2rem;
+            box-sizing: border-box;
+        }
+
+        .emoji-header {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        h1 span {
+            color: #D97844;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+
+        .card {
+            padding: 1.5rem;
+            background: #f9f9f9;
+            border-radius: 12px;
+        }
+
+        .card h3 {
+            color: #D97844;
+            margin-top: 0;
+            font-weight: 600;
+        }
+
+        .card p {
+            margin: 0;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        .form-container h3 {
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        form {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        input[type="email"] {
+            flex-grow: 1;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            min-width: 250px;
+            font-family: inherit;
+        }
+
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #D97844;
+            box-shadow: 0 0 0 2px rgba(217, 120, 68, 0.2);
+        }
+
+        button {
+            padding: 1rem 2rem;
+            background-color: #D97844;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            font-family: inherit;
+            white-space: nowrap;
+        }
+
+        button:hover {
+            background-color: #bf683a;
+        }
+
+        .fallback {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 1rem;
+        }
+
+        .fallback a {
+            color: #D97844;
+            text-decoration: none;
+        }
+
+        .fallback a:hover {
+            text-decoration: underline;
+        }
+
+        .success-message {
+            display: none;
+            padding: 2rem;
+            background-color: #e8f8f5;
+            color: #27ae60;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="emoji-header">🌍🍽️</div>
+
+        <h1>Get early access to <span>passport2flavor</span></h1>
+
+        <p class="subtitle">
+            We’re building a global community of food lovers. Whether you want to <strong>host authentic cooking
+                classes</strong> from your kitchen or <strong>explore cuisines from around the world</strong>, our
+            platform connects you through the universal language of food.
+        </p>
+
+        <div class="grid">
+            <div class="card">
+                <h3>👨‍🍳 For Hosts</h3>
+                <p>Share your cultural heritage, earn money, and meet amazing people by teaching them your favorite
+                    family recipes.</p>
+            </div>
+            <div class="card">
+                <h3>🌮 For Guests</h3>
+                <p>Travel the world without leaving your city. Learn new techniques, discover new flavors, and collect
+                    badges along the way.</p>
+            </div>
+        </div>
+
+        <div id="successMessage" class="success-message">
+            🎉 You're on the list! We can't wait to welcome you to the kitchen.
+        </div>
+
+        <div id="formContainer" class="form-container">
+            <h3>Join the waitlist today!</h3>
+            <!-- Formspree or Netlify Forms can easily replace this action -->
+            <form id="waitlistForm">
+                <input type="email" id="emailInput" placeholder="Enter your email address" required>
+                <button type="submit">Join Now &rarr;</button>
+            </form>
+            <p class="fallback">
+                Alternatively, you can <a href="#">fill out our detailed Google Form</a>.
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('waitlistForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const email = document.getElementById('emailInput').value;
+            if (email) {
+                // Here you could send the email to a backend or service like Mailchimp/Formspree
+                console.log("Registered email:", email);
+
+                // Show success feedback
+                document.getElementById('formContainer').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>
