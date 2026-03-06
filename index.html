@@ -178,7 +178,8 @@
         <h1>Get early access to <span>passport2flavor</span></h1>
 
         <p class="subtitle">
-            We’re building a global community of food lovers. Whether you want to <strong>host authentic cooking
+            We’re building a global community of food lovers in Switzerland, Zürich first. Whether you want to
+            <strong>host authentic cooking
                 classes</strong> from your kitchen or <strong>explore cuisines from around the world</strong>, our
             platform connects you through the universal language of food.
         </p>
@@ -202,29 +203,46 @@
 
         <div id="formContainer" class="form-container">
             <h3>Join the waitlist today!</h3>
-            <!-- Formspree or Netlify Forms can easily replace this action -->
-            <form id="waitlistForm">
-                <input type="email" id="emailInput" placeholder="Enter your email address" required>
-                <button type="submit">Join Now &rarr;</button>
+            <!-- Submit to Google Apps Script -->
+            <form id="waitlistForm" name="submit-to-google-sheet">
+                <input type="email" id="emailInput" name="email" placeholder="Enter your email address" required>
+                <button type="submit" id="submitBtn">Join Now &rarr;</button>
             </form>
             <p class="fallback">
-                Alternatively, you can <a href="#">fill out our detailed Google Form</a>.
+                Alternatively, you can <a href="https://forms.gle/NnzqUiGTupRqrD5g8" target="_blank"
+                    rel="noopener noreferrer">fill out our detailed Google Form</a>.
             </p>
         </div>
     </div>
 
     <script>
-        document.getElementById('waitlistForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            const email = document.getElementById('emailInput').value;
-            if (email) {
-                // Here you could send the email to a backend or service like Mailchimp/Formspree
-                console.log("Registered email:", email);
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzWcHi7Tttv71RD4gvem8VhMrre9EBkYZ3Z5kByx0QZ_MvjtdNmV6M5To8DGmnr86m0bw/exec';
+        const form = document.forms['submit-to-google-sheet'];
+        const submitBtn = document.getElementById('submitBtn');
 
-                // Show success feedback
-                document.getElementById('formContainer').style.display = 'none';
-                document.getElementById('successMessage').style.display = 'block';
-            }
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: new FormData(form),
+                mode: 'no-cors' // Use no-cors to prevent cross origin fetching errors
+            })
+                .then(response => {
+                    // Show success feedback
+                    document.getElementById('formContainer').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Join Now &rarr;';
+                    alert('Oops! Something went wrong. Please try again.');
+                });
         });
     </script>
 </body>
