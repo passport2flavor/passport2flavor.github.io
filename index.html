@@ -2,249 +2,655 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>passport2flavor - Waitlist</title>
-    <!-- Include Inter font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
-    <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #FFF5F0 0%, #FFE8DB 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>passport2flavor — Join the Waitlist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .container {
-            max-width: 800px;
-            width: 90%;
-            background-color: white;
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 20px 40px rgba(217, 120, 68, 0.15);
-            text-align: center;
-            margin: 2rem;
-            box-sizing: border-box;
-        }
+    :root {
+      --teal:       #0E4A4D;
+      --teal-mid:   #1A6B70;
+      --saffron:    #E8A33D;
+      --terra:      #C14A28;
+      --parchment:  #F4ECDD;
+      --parch-dk:   #EAE0CC;
+      --ink:        #1C2B2C;
+      --gray:       #6B7B7C;
+      --border:     #D9CDB8;
+      --white:      #FFFFFF;
+      --teal-light: #D4E9EA;
+      --terra-lt:   #F9EAE5;
+      --saff-lt:    #FDF3E2;
+    }
 
-        .emoji-header {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
+    html { scroll-behavior: smooth; }
 
-        h1 {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 1rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--parchment);
+      color: var(--ink);
+      line-height: 1.6;
+    }
 
-        h1 span {
-            color: #D97844;
-        }
+    /* ── Hero ───────────────────────────────────────── */
+    .hero {
+      background: linear-gradient(150deg, var(--teal) 0%, var(--teal-mid) 60%, var(--teal) 100%);
+      padding: clamp(4rem, 10vw, 8rem) clamp(1.5rem, 6vw, 5rem) clamp(3.5rem, 8vw, 6rem);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+    .hero::before {
+      content: '';
+      position: absolute; top: -100px; right: -100px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: rgba(232,163,61,0.1); pointer-events: none;
+    }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
-            text-align: left;
-        }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -80px; left: -80px;
+      width: 380px; height: 380px; border-radius: 50%;
+      background: rgba(193,74,40,0.08); pointer-events: none;
+    }
 
-        .card {
-            padding: 1.5rem;
-            background: #f9f9f9;
-            border-radius: 12px;
-        }
+    .hero-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
 
-        .card h3 {
-            color: #D97844;
-            margin-top: 0;
-            font-weight: 600;
-        }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,163,61,0.18);
+      border: 1px solid rgba(232,163,61,0.35);
+      border-radius: 100px;
+      padding: 6px 18px;
+      margin-bottom: 2rem;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--saffron);
+    }
 
-        .card p {
-            margin: 0;
-            color: #555;
-            line-height: 1.5;
-        }
+    .hero h1 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      line-height: 1.1;
+      color: #fff;
+      letter-spacing: -1.5px;
+      margin-bottom: 1.5rem;
+    }
 
-        .form-container h3 {
-            margin-bottom: 1rem;
-            color: #333;
-            font-weight: 600;
-        }
+    .hero h1 span { color: var(--saffron); }
 
-        form {
-            display: flex;
-            gap: 0.5rem;
-            max-width: 500px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-        }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,0.72);
+      line-height: 1.7;
+      max-width: 540px;
+      margin: 0 auto 3rem;
+    }
 
-        input[type="email"] {
-            flex-grow: 1;
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-            min-width: 250px;
-            font-family: inherit;
-        }
+    /* Role toggle */
+    .role-toggle {
+      display: inline-flex;
+      background: rgba(255,255,255,0.1);
+      border-radius: 100px;
+      padding: 4px;
+      margin-bottom: 1.25rem;
+      gap: 2px;
+    }
 
-        input[type="email"]:focus {
-            outline: none;
-            border-color: #D97844;
-            box-shadow: 0 0 0 2px rgba(217, 120, 68, 0.2);
-        }
+    .role-btn {
+      padding: 9px 22px;
+      border-radius: 100px;
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: transparent;
+      color: rgba(255,255,255,0.6);
+    }
 
-        button {
-            padding: 1rem 2rem;
-            background-color: #D97844;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            font-family: inherit;
-            white-space: nowrap;
-        }
+    .role-btn.active {
+      background: #fff;
+      color: var(--teal);
+    }
 
-        button:hover {
-            background-color: #bf683a;
-        }
+    /* Form */
+    .hero-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
 
-        .fallback {
-            font-size: 0.85rem;
-            color: #999;
-            margin-top: 1rem;
-        }
+    .input-row {
+      display: flex;
+      gap: 10px;
+      max-width: 500px;
+      width: 100%;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
 
-        .fallback a {
-            color: #D97844;
-            text-decoration: none;
-        }
+    .hero-form input[type="email"] {
+      flex: 1 1 220px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      border: 2px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.12);
+      color: #fff;
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
+    }
 
-        .fallback a:hover {
-            text-decoration: underline;
-        }
+    .hero-form input[type="email"]::placeholder { color: rgba(255,255,255,0.45); }
+    .hero-form input[type="email"]:focus { border-color: var(--saffron); }
 
-        .success-message {
-            display: none;
-            padding: 2rem;
-            background-color: #e8f8f5;
-            color: #27ae60;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.2rem;
-        }
+    .btn-primary {
+      padding: 14px 28px;
+      border-radius: 12px;
+      border: none;
+      background: var(--saffron);
+      color: var(--teal);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 4px 16px rgba(232,163,61,0.4);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 2rem 1.5rem;
-            }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232,163,61,0.5);
+    }
 
-            h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
+    .btn-primary:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-note {
+      margin-top: 1rem;
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .form-note a { color: rgba(255,255,255,0.6); text-decoration: underline; }
+    .form-note a:hover { color: var(--saffron); }
+
+    .success-hero {
+      background: rgba(140,168,122,0.18);
+      border: 1px solid rgba(140,168,122,0.4);
+      border-radius: 16px;
+      padding: 1.75rem 2.5rem;
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      display: none;
+    }
+
+    /* ── Stats bar ──────────────────────────────────── */
+    .stats-bar {
+      background: var(--teal);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .stats-inner {
+      max-width: 860px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 0 1.5rem;
+    }
+
+    .stat {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .stat:last-child { border-right: none; }
+
+    .stat-value {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 1.75rem;
+      color: var(--saffron);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ── Features ───────────────────────────────────── */
+    .section {
+      padding: clamp(3rem, 8vw, 5.5rem) clamp(1.5rem, 6vw, 4rem);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      color: var(--teal);
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: -0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-header p {
+      color: var(--gray);
+      font-size: 1rem;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .cards {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 2rem;
+      border: 1.5px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 36px rgba(14,74,77,0.1);
+    }
+
+    .card-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin-bottom: 1.25rem;
+    }
+
+    .card-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .card h3 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      color: var(--ink);
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+
+    .card p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      margin: 0;
+    }
+
+    /* ── How it works ───────────────────────────────── */
+    .how-section {
+      background: var(--parch-dk);
+      padding: clamp(3rem, 8vw, 5rem) clamp(1.5rem, 6vw, 4rem);
+    }
+
+    .steps {
+      max-width: 760px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+    }
+
+    .step-number {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 2.5rem;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .step h4 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      color: var(--teal);
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .step p {
+      color: var(--gray);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── Bottom CTA ─────────────────────────────────── */
+    .cta-section {
+      padding: clamp(3rem, 8vw, 5rem) 1.5rem;
+      text-align: center;
+    }
+
+    .cta-inner {
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .cta-emoji { font-size: 3rem; margin-bottom: 1rem; }
+
+    .cta-inner h2 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      color: var(--teal);
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      letter-spacing: -0.5px;
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-inner p {
+      color: var(--gray);
+      margin-bottom: 2rem;
+    }
+
+    .cta-form {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cta-form input[type="email"] {
+      flex: 1 1 220px;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      border: 1.5px solid var(--border);
+      background: #fff;
+      color: var(--ink);
+      outline: none;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s;
+    }
+
+    .cta-form input[type="email"]:focus { border-color: var(--saffron); }
+
+    .btn-teal {
+      padding: 14px 28px;
+      border-radius: 12px;
+      border: none;
+      background: var(--teal);
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-teal:hover { background: var(--teal-mid); }
+
+    .success-cta {
+      padding: 1.5rem 2rem;
+      background: var(--saff-lt);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      color: var(--teal);
+      font-weight: 700;
+      font-size: 1.05rem;
+      display: none;
+    }
+
+    /* ── Footer ─────────────────────────────────────── */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .footer a {
+      color: var(--gray);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.18s;
+    }
+
+    .footer a:hover { color: var(--teal); }
+
+    /* ── Responsive ─────────────────────────────────── */
+    @media (max-width: 600px) {
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2) { border-right: none; }
+      .role-btn { font-size: 13px; padding: 8px 16px; }
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="container">
-        <div class="emoji-header">🌍🍽️</div>
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Early Access</div>
 
-        <h1>Get early access to <span>passport2flavor</span></h1>
+      <h1>Your passport to<br><span>authentic flavors</span></h1>
 
-        <p class="subtitle">
-            We’re building a global community of food lovers in Switzerland, Zürich first. Whether you want to
-            <strong>host authentic cooking
-                classes</strong> from your kitchen or <strong>explore cuisines from around the world</strong>, our
-            platform connects you through the universal language of food.
+      <p>Join the waitlist for passport2flavor — where home cooks in Zürich share their culture
+        and food lovers explore the world, one kitchen at a time.</p>
+
+      <!-- Role toggle -->
+      <div class="role-toggle">
+        <button class="role-btn active" onclick="setRole(this, 'guest')">🌍 I want to explore</button>
+        <button class="role-btn" onclick="setRole(this, 'host')">👨‍🍳 I want to host</button>
+      </div>
+
+      <!-- Form -->
+      <div class="hero-form">
+        <form id="heroForm" name="submit-to-google-sheet-hero">
+          <input type="hidden" id="heroRole" name="role" value="guest">
+          <div class="input-row">
+            <input type="email" name="email" placeholder="your@email.com" required>
+            <button type="submit" class="btn-primary" id="heroSubmitBtn">Reserve my spot →</button>
+          </div>
+        </form>
+        <p class="form-note">
+          No spam. No credit card. Just early access. Or
+          <a href="https://forms.gle/NnzqUiGTupRqrD5g8" target="_blank" rel="noopener noreferrer">fill out our detailed form</a>.
         </p>
+      </div>
 
-        <div class="grid">
-            <div class="card">
-                <h3>👨‍🍳 For Hosts</h3>
-                <p>Share your cultural heritage, earn money, and meet amazing people by teaching them your favorite
-                    family recipes.</p>
-            </div>
-            <div class="card">
-                <h3>🌮 For Guests</h3>
-                <p>Travel the world without leaving your city. Learn new techniques, discover new flavors, and collect
-                    badges along the way.</p>
-            </div>
-        </div>
-
-        <div id="successMessage" class="success-message">
-            🎉 You're on the list! We can't wait to welcome you to the kitchen.
-        </div>
-
-        <div id="formContainer" class="form-container">
-            <h3>Join the waitlist today!</h3>
-            <!-- Submit to Google Apps Script -->
-            <form id="waitlistForm" name="submit-to-google-sheet">
-                <input type="email" id="emailInput" name="email" placeholder="Enter your email address" required>
-                <button type="submit" id="submitBtn">Join Now &rarr;</button>
-            </form>
-            <p class="fallback">
-                Alternatively, you can <a href="https://forms.gle/NnzqUiGTupRqrD5g8" target="_blank"
-                    rel="noopener noreferrer">fill out our detailed Google Form</a>.
-            </p>
-        </div>
+      <div id="heroSuccess" class="success-hero">
+        🎉 You're on the list! We can't wait to welcome you to the kitchen.
+      </div>
     </div>
+  </section>
 
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzWcHi7Tttv71RD4gvem8VhMrre9EBkYZ3Z5kByx0QZ_MvjtdNmV6M5To8DGmnr86m0bw/exec';
-        const form = document.forms['submit-to-google-sheet'];
-        const submitBtn = document.getElementById('submitBtn');
+  <!-- ── Stats bar ── -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat">
+        <div class="stat-value">16+</div>
+        <div class="stat-label">Cuisines</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">4</div>
+        <div class="stat-label">Languages</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">100%</div>
+        <div class="stat-label">Home cooks</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">CHF</div>
+        <div class="stat-label">Transparent pricing</div>
+      </div>
+    </div>
+  </div>
 
-        form.addEventListener('submit', e => {
-            e.preventDefault();
+  <!-- ── Features ── -->
+  <section class="section">
+    <div class="section-header">
+      <h2>What's waiting for you</h2>
+      <p>Whether you cook or crave, there's a seat at the table.</p>
+    </div>
+    <div class="cards">
 
-            // Show loading state
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Joining...';
+      <div class="card">
+        <div class="card-icon" style="background:#F9EAE5;">👨‍🍳</div>
+        <div class="card-tag" style="color:#C14A28;">For Hosts</div>
+        <h3>Turn your kitchen into a classroom</h3>
+        <p>Share your heritage, earn on your schedule, and meet guests from around the world — all from your own home.</p>
+      </div>
 
-            fetch(scriptURL, {
-                method: 'POST',
-                body: new FormData(form),
-                mode: 'no-cors' // Use no-cors to prevent cross origin fetching errors
-            })
-                .then(response => {
-                    // Show success feedback
-                    document.getElementById('formContainer').style.display = 'none';
-                    document.getElementById('successMessage').style.display = 'block';
-                })
-                .catch(error => {
-                    console.error('Error!', error.message);
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Join Now &rarr;';
-                    alert('Oops! Something went wrong. Please try again.');
-                });
+      <div class="card">
+        <div class="card-icon" style="background:#D4E9EA;">🌮</div>
+        <div class="card-tag" style="color:#0E4A4D;">For Guests</div>
+        <h3>Travel the world, one plate at a time</h3>
+        <p>Book intimate cooking experiences led by real home cooks. Discover new flavors, techniques, and stories.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon" style="background:#FDF3E2;">🏅</div>
+        <div class="card-tag" style="color:#C8862A;">Badges & Community</div>
+        <h3>Collect cuisines like stamps in a passport</h3>
+        <p>Earn badges for every cuisine you explore. Build a flavor passport that tells your culinary story.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── How it works ── -->
+  <section class="how-section">
+    <div class="section-header">
+      <h2>How it works</h2>
+      <p>Simple by design. Delicious by nature.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">01</div>
+        <h4>Browse classes</h4>
+        <p>Filter by cuisine, date, language or price. Find something that makes you excited to cook.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">02</div>
+        <h4>Book a seat</h4>
+        <p>Reserve your spot in seconds. Book solo or bring friends — up to 20 guests per session.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">03</div>
+        <h4>Cook & connect</h4>
+        <p>Meet at the host's kitchen. Learn real recipes, share stories, eat together.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">04</div>
+        <h4>Earn your badge</h4>
+        <p>Every cuisine you try adds a stamp to your flavor passport. How far can you go?</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Bottom CTA ── -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-emoji">🍜</div>
+      <h2>Ready to collect your first stamp?</h2>
+      <p>Join the waitlist and be among the first to experience passport2flavor when we open in Zürich.</p>
+
+      <form id="ctaForm" class="cta-form" name="submit-to-google-sheet-cta">
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <button type="submit" class="btn-teal" id="ctaSubmitBtn">Join waitlist →</button>
+      </form>
+
+      <div id="ctaSuccess" class="success-cta">
+        🎉 You're on the list! We'll be in touch soon.
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <div class="footer">
+    <a href="/">← Back to homepage</a>
+  </div>
+
+  <script>
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzWcHi7Tttv71RD4gvem8VhMrre9EBkYZ3Z5kByx0QZ_MvjtdNmV6M5To8DGmnr86m0bw/exec';
+
+    function setRole(btn, role) {
+      document.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('heroRole').value = role;
+    }
+
+    function submitForm(formEl, submitBtn, successEl) {
+      const originalText = submitBtn.textContent;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Joining...';
+
+      fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: new FormData(formEl),
+        mode: 'no-cors',
+      })
+        .then(() => {
+          formEl.style.display = 'none';
+          successEl.style.display = 'block';
+        })
+        .catch(err => {
+          console.error(err);
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalText;
+          alert('Oops! Something went wrong. Please try again.');
         });
-    </script>
-</body>
+    }
 
+    document.getElementById('heroForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      submitForm(this, document.getElementById('heroSubmitBtn'), document.getElementById('heroSuccess'));
+    });
+
+    document.getElementById('ctaForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      submitForm(this, document.getElementById('ctaSubmitBtn'), document.getElementById('ctaSuccess'));
+    });
+  </script>
+
+</body>
 </html>
